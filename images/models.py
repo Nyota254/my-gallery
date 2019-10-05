@@ -6,6 +6,9 @@ class Location(models.Model):
     '''
     location = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.location
+
     def save_location(self):
         '''
         Saves the location data to the database
@@ -29,6 +32,9 @@ class Category(models.Model):
     This class will contain the Category model
     '''
     category = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.category
 
     def save_category(self):
         '''
@@ -54,6 +60,9 @@ class Tag(models.Model):
     '''
     name = models.CharField(max_length=30) 
 
+    def __str__(self):
+        return self.name
+
 
 class Image(models.Model):
     '''
@@ -65,6 +74,9 @@ class Image(models.Model):
     image_location = models.ForeignKey(Location,on_delete=models.CASCADE)
     image_category = models.ForeignKey(Category,on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag)
+
+    def __str__(self):
+        return self.image_name
 
     def save_image(self):
         '''
