@@ -97,6 +97,13 @@ class Image(models.Model):
         pass
 
     @classmethod
+    def get_all_images(cls):
+        '''
+        Querys the entire database and gets all the images
+        '''
+        return cls.objects.all()
+
+    @classmethod
     def get_image_by_id(cls,id):
         '''
         Querys the database to get the images by id
