@@ -35,7 +35,8 @@ class ImageTest(TestCase):
         '''
         Test whether the class method save_image works 
         '''
-        self.new_image.save_image()
+        self.another_image = Image(image='media/another_image.png',image_name='moringa_day2',image_description='this is my first pic of my second day in moringa',image_location=self.new_location,image_category=self.new_category)
+        self.another_image.save()
         saved_images = Image.objects.all()
         self.assertTrue(len(saved_images)>1)
 
@@ -44,14 +45,16 @@ class ImageTest(TestCase):
         Test whether the class method delete_image works
         '''
         self.new_image.delete_image()
+        saved_images = Image.objects.all()
         self.assertTrue(len(saved_images)==0)
 
     def test_update_method(self):
         '''
         Test whether the class method update_image works
         '''
-        self.new_image.update(image_name ='moringa-firstday')
-        searched_image = Image.objects.filter(id=1)
+        image_found = Image.object.filter(pk=1)
+        image_found.update(image_name ='moringa-firstday')
+        searched_image = Image.objects.filter(pk=1)
         self.assertEqual(searched_image.image_name,'moringa-firstday')
 
     def test_get_image_by_id(self):
@@ -60,7 +63,7 @@ class ImageTest(TestCase):
         '''
         self.another_image = Image(image='media/another_image.png',image_name='moringa_day2',image_description='this is my first pic of my second day in moringa',image_location=self.new_location,image_category=self.new_category)
         self.another_image.save()
-        searched_image = Image.objects.filter(id=2)
+        searched_image = Image.get_image_by_id(self.another_image.pk)
         self.assertEqual(searched_image.image,'media/another_image.png')
 
     def test_get_image_by_location(self):
@@ -71,7 +74,7 @@ class ImageTest(TestCase):
         self.another_location.save()
         self.another_image = Image(image='media/another_image.png',image_name='moringa_day2',image_description='this is my first pic of my second day in moringa',image_location=self.another_location,image_category=self.new_category)
         self.another_image.save()
-        searched_image = Image.objects.filter(location='mombasa')
+        searched_image = Image.filter_by_location(location='mombasa')
         self.assertEqual(searched_image.image,'media/another_image.png')
 
     def test_get_image_by_category(self):
@@ -82,7 +85,7 @@ class ImageTest(TestCase):
         self.another_category.save()
         self.another_image = Image(image='media/another_image.png',image_name='moringa_day2',image_description='this is my first pic of my second day in moringa',image_location=self.new_location,image_category=self.another_category)
         self.another_image.save()
-        searched_image = Image.objects.filter(category=fun)
+        searched_image = Image.search_image_by_category('fun')
         self.assertEqual(searched_image.image,'media/another_image.png')
 
     

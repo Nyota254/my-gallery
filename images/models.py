@@ -1,21 +1,82 @@
 from django.db import models
 
+class Location(models.Model):
+    '''
+    This class will contain the location model
+    '''
+    location = models.CharField(max_length=30)
+
+    def save_location(self):
+        '''
+        Saves the location data to the database
+        '''
+        self.save()
+    
+    def delete_location(self):
+        '''
+        Deletes the location from the database
+        '''
+        self.delete()
+    def update_location(self):
+        '''
+        Updates the location from the database
+        '''
+        pass
+
+
+class Category(models.Model):
+    '''
+    This class will contain the Category model
+    '''
+    category = models.CharField(max_length=30)
+
+    def save_category(self):
+        '''
+        Saves the category data to the database
+        '''
+        self.save()
+    
+    def delete_category(self):
+        '''
+        Deletes the category from the database
+        '''
+        self.delete()
+    def update_category(self):
+        '''
+        Updates the category from the database
+        '''
+        pass
+
+
+class Tag(models.Model):
+    '''
+    Adds the tags class to the models
+    '''
+    name = models.CharField(max_length=30) 
+
+
 class Image(models.Model):
     '''
     This class will contain the Images model
     '''
-    pass
+    image = models.ImageField(upload_to='images/')
+    image_name = models.CharField(max_length=40)
+    image_description = models.TextField()
+    image_location = models.ForeignKey(Location,on_delete=models.CASCADE)
+    image_category = models.ForeignKey(Category,on_delete=models.CASCADE)
+    tags = models.ManyToManyField(Tag)
+
     def save_image(self):
         '''
         Saves data to database from the image fields
         '''
-        pass
+        self.save()
 
     def delete_image(self):
         '''
         Deletes image data from database
         '''
-        pass
+        self.delete()
 
     def update_image(self):
         '''
@@ -28,64 +89,24 @@ class Image(models.Model):
         '''
         Querys the database to get the images by id
         '''
-        pass
+        image_found = cls.objects.filter(pk = id)
+        return image_found
 
     @classmethod
-    def search_image(cls,category):
+    def search_image_by_category(cls,category):
         '''
         Querys the database to get the images by category
         '''
-        pass
+        image_found = cls.objects.filter(image_category = category)
+        return image_found
+
     @classmethod
     def filter_by_location(cls,location):
         '''
         Querys the database to search for images by their location
         '''
-        pass
+        image_found = cls.objects.filter(image_location=location)
+        return image_found
 
-class Location(models.Model):
-    '''
-    This class will contain the location model
-    '''
-    pass
 
-    def save_location(self):
-        '''
-        Saves the location data to the database
-        '''
-        pass
-    
-    def delete_location(self):
-        '''
-        Deletes the location from the database
-        '''
-        pass
-    def update_location(self):
-        '''
-        Updates the location from the database
-        '''
-        pass
-
-class Category(models.Model):
-    '''
-    This class will contain the Category model
-    '''
-    pass
-
-    def save_category(self):
-        '''
-        Saves the category data to the database
-        '''
-        pass
-    
-    def delete_category(self):
-        '''
-        Deletes the category from the database
-        '''
-        pass
-    def update_category(self):
-        '''
-        Updates the category from the database
-        '''
-        pass
 
