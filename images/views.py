@@ -31,3 +31,12 @@ def search_results(request):
     else:
         message = "you have not searched for any term"
         return render(request,'search.html',{"message":message})
+
+def single_image(request,image_id):
+    try:
+        single_image = Image.objects.get(id = image_id)
+    except DoesNotExist:
+        raise Http404()
+    title=f'{single_image.image_name}'
+    
+    return render(request,"image.html", {"title":title,"image":single_image})

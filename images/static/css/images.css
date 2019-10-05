@@ -27,3 +27,8 @@ html {
 button {
     border-radius: 50px;
 }
+
+.image {
+    width:550px;
+    height: auto;
+}

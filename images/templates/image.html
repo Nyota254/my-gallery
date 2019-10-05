@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <img src="{{image.image.url}}" alt="{{image.image_name}}" class="image">
+            </div>
+            <div class="col-md-6">
+                <ol>
+                    <h1 class="headings">Image Details</h1>
+                    <li>
+                        <p class="headings">Image Name</p>
+                        <p>{{image.image_name}}</p>
+                    </li>
+                    <li>
+                        <p class="headings">Image Description</p>
+                        <p>{{image.image_description}}</p>
+                    </li>
+                    <li>
+                        <p class="headings">Image Location</p>
+                        <p>{{image.image_location.location}}</p>
+                    </li>
+                    <li>
+                        <p class="headings">Image Category</p>
+                        <p>{{image.image_category.category}}</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+{% endblock %}
