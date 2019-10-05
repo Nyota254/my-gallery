@@ -52,10 +52,10 @@ class ImageTest(TestCase):
         '''
         Test whether the class method update_image works
         '''
-        image_found = Image.object.filter(pk=1)
+        image_found = Image.objects.filter(pk=1)
         image_found.update(image_name ='moringa-firstday')
         searched_image = Image.objects.filter(pk=1)
-        self.assertEqual(searched_image.image_name,'moringa-firstday')
+        self.assertEqual(searched_image,'moringa-firstday')
 
     def test_get_image_by_id(self):
         '''
@@ -64,7 +64,7 @@ class ImageTest(TestCase):
         self.another_image = Image(image='media/another_image.png',image_name='moringa_day2',image_description='this is my first pic of my second day in moringa',image_location=self.new_location,image_category=self.new_category)
         self.another_image.save()
         searched_image = Image.get_image_by_id(self.another_image.pk)
-        self.assertEqual(searched_image.image,'media/another_image.png')
+        self.assertEqual(searched_image,self.another_image)
 
     def test_get_image_by_location(self):
         '''
@@ -74,8 +74,8 @@ class ImageTest(TestCase):
         self.another_location.save()
         self.another_image = Image(image='media/another_image.png',image_name='moringa_day2',image_description='this is my first pic of my second day in moringa',image_location=self.another_location,image_category=self.new_category)
         self.another_image.save()
-        searched_image = Image.filter_by_location(location='mombasa')
-        self.assertEqual(searched_image.image,'media/another_image.png')
+        searched_image = Image.filter_by_location('mombasa')
+        self.assertEqual(searched_image,self.another_image)
 
     def test_get_image_by_category(self):
         '''
@@ -86,6 +86,6 @@ class ImageTest(TestCase):
         self.another_image = Image(image='media/another_image.png',image_name='moringa_day2',image_description='this is my first pic of my second day in moringa',image_location=self.new_location,image_category=self.another_category)
         self.another_image.save()
         searched_image = Image.search_image_by_category('fun')
-        self.assertEqual(searched_image.image,'media/another_image.png')
+        self.assertEqual(searched_image,self.another_image)
 
     

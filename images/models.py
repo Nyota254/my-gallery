@@ -112,11 +112,11 @@ class Image(models.Model):
         return image_found
 
     @classmethod
-    def search_image_by_category(cls,category):
+    def search_image_by_category(cls,searched_category):
         '''
         Querys the database to get the images by category
         '''
-        image_found = cls.objects.filter(image_category = category)
+        image_found = cls.objects.filter(image_category__category__icontains=searched_category)
         return image_found
 
     @classmethod
