@@ -8,7 +8,7 @@
             {% if searched_images %}
                 <h2>Found {{ searched_images|length }} images for category {{message}}</h2>
             {% else %}
-                <h2>Found 0 images for category {{message}}</h2>
+                <h2>Found 0 images for {{message}}</h2>
             {% endif %}
         </div>
 
@@ -22,12 +22,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{image.image_name}}</h5>
                                 <p class="card-text">{{image.image_description}}</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
                             </div>
                         </div>
                     </div>
                 {%endfor%}
-                
+
             {% endif %}
         </div>
 

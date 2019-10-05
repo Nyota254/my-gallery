@@ -1,3 +1,29 @@
-h1 {
-    color:green;
+.welcome-section {
+    padding-top: 200px;
+    font-family: 'Merienda', cursive;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.card-img-top {
+    /* width: 285px; */
+    height: 260px;   
+}
+
+
+.landing-page {
+    background-image: url(../images/gallery.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    height: 100vh;
+}
+
+.headings {
+    font-family: 'Merienda', cursive;
+}
+
+button {
+    border-radius: 50px;
 }
