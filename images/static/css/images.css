@@ -13,8 +13,10 @@ html {
 }
 
 
-.landing-page {
-    background-image: url(../images/gallery.jpg);
+body {
+    /* background-image: url(../images/gallery.jpg); */
+    background-color: black;
+    color: white;
     background-size: cover;
     background-attachment: fixed;
     height: 100vh;
@@ -36,4 +38,13 @@ button {
 .form-style {        
         width: 50%;
         margin-left : 42%;
+}
+
+.custom-imagestyle {
+    width: 283px;
+    height: 280px;
+}
+
+.modal-content {
+    background-color: black;
 }

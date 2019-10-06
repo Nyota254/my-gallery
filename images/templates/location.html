@@ -3,13 +3,13 @@
 {% block content %}
 
     
-    <div class="landing-page">
+    <!-- <div class="landing-page">
         <div class="welcome-section text-center">
             <h1>Hi there welcome to my photo gallery</h1>
             <a class="btn btn-primary animated flash" href="#images">Images</a>
-        </div>
+        </div> -->
     </div><br><br>
-    <div class="container-fluid">
+    <div class="container">
             <div class="headings text-center" id="images">
                     <h1>Images</h1>
                     <p>Filter by location</p>
@@ -22,15 +22,15 @@
                                 {% endfor %}
                             </select>
                           </div>
-                          <button type="submit">Filter</button>
+                          <button btn="btn" type="submit">Filter</button>
                     </form>
                 </div>
         <div class="row">
             {% if found_images %}
 
             {% for image in found_images %}
-                <div class="col-md-4 col-sm-4 col-xs-4 col-xl-4">
-                    <div class="card" style="width: 18rem;">
+                <div class="col-md-3 col-sm-3 col-xs-3 col-xl-3">
+                    <!-- <div class="card" style="width: 18rem;">
                         <a  class="btn" href="{% url 'single_image' image.id %}"><img src="{{image.image.url}}" class="card-img-top" alt="{{image.image_name}} image"></a>
                         <div class="card-body">
                             <h5 class="card-title">{{image.image_name}}</h5>
@@ -38,6 +38,9 @@
                             <p class="card-text">Category: {{image.image_category.category}}</p>
                             <a data-toggle="modal" data-target="#imageModal{{image.id}}" class="btn btn-primary">View Details</a>
                         </div>
+                    </div> -->
+                    <div class="card" style="width: 18rem;">
+                            <a   data-toggle="modal" data-target="#imageModal{{image.id}}" href="#"><img src="{{image.image.url}}"  alt="{{image.image_name}} image" class="custom-imagestyle card-img-top"></a>
                     </div>
                 </div>
                   <!-- modal -->
@@ -73,7 +76,7 @@
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary" href="{% url 'single_image' image.id %}">View Image</button>
+                  <a type="button" class="btn btn-primary" href="{% url 'single_image' image.id %}">View large Image</a>
                 </div>
               </div>
             </div>
@@ -81,9 +84,9 @@
             {% endfor %}
 
             {% else %}
-                <div class="alert alert-info" role="alert">
-                    <p class="text-center">No images yet</p>
-                </div>
+
+                <p>No images yet</p>
+
             {% endif %}
         </div>
     </div>
