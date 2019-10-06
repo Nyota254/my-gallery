@@ -124,7 +124,7 @@ class Image(models.Model):
         '''
         Querys the database to search for images by their location
         '''
-        image_found = cls.objects.filter(image_location=location)
+        image_found = cls.objects.filter(image_location__location__icontains=location)
         return image_found
 
 

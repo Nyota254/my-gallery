@@ -26,9 +26,9 @@
                     </form>
                 </div>
         <div class="row">
-            {% if images %}
+            {% if found_images %}
 
-            {% for image in images %}
+            {% for image in found_images %}
                 <div class="col-md-4 col-sm-4 col-xs-4 col-xl-4">
                     <div class="card" style="width: 18rem;">
                         <a  class="btn" href="{% url 'single_image' image.id %}"><img src="{{image.image.url}}" class="card-img-top" alt="{{image.image_name}} image"></a>
@@ -81,9 +81,9 @@
             {% endfor %}
 
             {% else %}
-
-                <p>No images yet</p>
-
+                <div class="alert alert-info" role="alert">
+                    <p class="text-center">No images yet</p>
+                </div>
             {% endif %}
         </div>
     </div>

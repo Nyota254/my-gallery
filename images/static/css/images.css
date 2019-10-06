@@ -32,3 +32,8 @@ button {
     width:550px;
     height: auto;
 }
+
+.form-style {        
+        width: 50%;
+        margin-left : 42%;
+}

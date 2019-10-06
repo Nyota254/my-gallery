@@ -6,10 +6,12 @@ def index(request):
     This method will display the home page of the application
     '''
     images = Image.get_all_images()
+    locations = Location.objects.all()
     title = "Home"
     context = {
         "title":title,
-        "images":images
+        "images":images,
+        "locations":locations
     }
 
     return render(request,'index.html',context)
@@ -40,3 +42,24 @@ def single_image(request,image_id):
     title=f'{single_image.image_name}'
     
     return render(request,"image.html", {"title":title,"image":single_image})
+
+def filter_location(request):
+    if 'location' in request.GET and request.GET['location']:
+        filterd_location = request.GET.get('location')
+        found_images = Image.filter_by_location(filterd_location)
+        message = f'{filterd_location}'
+        locations = Location.objects.all()
+        context = {
+            "found_images":found_images,
+            "message":message,
+            "locations":locations
+        }
+        return render(request,'location.html',context)
+    else:
+        locations = Location.objects.all()
+        message = "No selection made"
+        context = {
+            "message":message,
+            "locations":locations
+        }
+        return render(request,'location.html',context)
