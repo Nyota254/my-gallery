@@ -2,93 +2,81 @@
 
 {% block content %}
 
-    
-    <!-- <div class="landing-page">
-        <div class="welcome-section text-center">
-            <h1>Hi there welcome to my photo gallery</h1>
-            <a class="btn btn-primary animated flash" href="#images">Images</a>
-        </div> -->
-    </div><br><br>
-    <div class="container">
-            <div class="headings text-center" id="images">
-                <h1>Welcome to my gallery</h1>
-                    <p>Filter by location</p>
-                    <form action="{% url 'filter-location' %}" class="form-style">
-                        <div class="form-group col-md-4">
-                            <label for="locationFilter">Location filter</label>
-                            <select id="locationFilter" class="form-control" name="location">
-                                {% for location in locations %}
-                                    <option>{{ location.location }}</option>
-                                {% endfor %}
-                            </select><br>
-                            <button btn="btn" type="submit">Filter</button>
-                          </div>     
-                    </form>
-                </div>
-        <div class="row">
-            {% if images %}
+</div><br><br>
+<div class="container">
+    <div class="headings text-center" id="images">
+        <h1>Welcome to my gallery</h1>
+        <p>Filter by location</p>
+        <form action="{% url 'filter-location' %}" class="form-style">
+            <div class="form-group col-md-4">
+                <label for="locationFilter">Location filter</label>
+                <select id="locationFilter" class="form-control" name="location">
+                    {% for location in locations %}
+                    <option>{{ location.location }}</option>
+                    {% endfor %}
+                </select><br>
+                <button btn="btn" type="submit">Filter</button>
+            </div>
+        </form>
+    </div>
+    <div class="row">
+        {% if images %}
 
-            {% for image in images %}
-                <div class="col-md-3 col-sm-3 col-xs-3 col-xl-3">
-                    <!-- <div class="card" style="width: 18rem;">
-                        <a  class="btn" href="{% url 'single_image' image.id %}"><img src="{{image.image.url}}" class="card-img-top" alt="{{image.image_name}} image"></a>
-                        <div class="card-body">
-                            <h5 class="card-title">{{image.image_name}}</h5>
-                            <p class="card-text">{{image.image_description}}</p>
-                            <p class="card-text">Category: {{image.image_category.category}}</p>
-                            <a data-toggle="modal" data-target="#imageModal{{image.id}}" class="btn btn-primary">View Details</a>
-                        </div>
-                    </div> -->
-                    <div>
-                            <a  class="btn" data-toggle="modal" data-target="#imageModal{{image.id}}" href="#"><img src="{{image.image.url}}"  alt="{{image.image_name}} image" class="custom-imagestyle"></a>
+        {% for image in images %}
+        <div class="col-md-3 col-sm-3 col-xs-3 col-xl-3">
+            <div>
+                <a class="btn" data-toggle="modal" data-target="#imageModal{{image.id}}" href="#"><img
+                        src="{{image.image.url}}" alt="{{image.image_name}} image" class="custom-imagestyle"></a>
+            </div>
+        </div>
+        <!-- modal -->
+        <div class="modal fade" id="imageModal{{image.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Image Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ol>
+                            <h1 class="headings">Image Details</h1>
+                            <li>
+                                <p class="headings">Image Name</p>
+                                <p>{{image.image_name}}</p>
+                            </li>
+                            <li>
+                                <p class="headings">Image Description</p>
+                                <p>{{image.image_description}}</p>
+                            </li>
+                            <li>
+                                <p class="headings">Image Location</p>
+                                <p>{{image.image_location.location}}</p>
+                            </li>
+                            <li>
+                                <p class="headings">Image Category</p>
+                                <p>{{image.image_category.category}}</p>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <a type="button" class="btn btn-primary" href="{% url 'single_image' image.id %}">View large
+                            Image</a>
                     </div>
                 </div>
-                  <!-- modal -->
-    <div class="modal fade" id="imageModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Image Details</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                        <ol>
-                                <h1 class="headings">Image Details</h1>
-                                <li>
-                                    <p class="headings">Image Name</p>
-                                    <p>{{image.image_name}}</p>
-                                </li>
-                                <li>
-                                    <p class="headings">Image Description</p>
-                                    <p>{{image.image_description}}</p>
-                                </li>
-                                <li>
-                                    <p class="headings">Image Location</p>
-                                    <p>{{image.image_location.location}}</p>
-                                </li>
-                                <li>
-                                    <p class="headings">Image Category</p>
-                                    <p>{{image.image_category.category}}</p>
-                                </li>
-                            </ol>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <a type="button" class="btn btn-primary" href="{% url 'single_image' image.id %}">View large Image</a>
-                </div>
-              </div>
             </div>
-          </div>
-            {% endfor %}
-
-            {% else %}
-
-                <p>No images yet</p>
-
-            {% endif %}
         </div>
+        {% endfor %}
+
+        {% else %}
+
+        <p>No images yet</p>
+
+        {% endif %}
     </div>
+</div>
 
 {% endblock %}
