@@ -11,7 +11,7 @@
     </div><br><br>
     <div class="container">
             <div class="headings text-center" id="images">
-                    <h1>Images</h1>
+                <h1>Welcome to my gallery</h1>
                     <p>Filter by location</p>
                     <form action="{% url 'filter-location' %}" class="form-style">
                         <div class="form-group col-md-4">
@@ -20,9 +20,9 @@
                                 {% for location in locations %}
                                     <option>{{ location.location }}</option>
                                 {% endfor %}
-                            </select>
-                          </div>
-                          <button btn="btn" type="submit">Filter</button>
+                            </select><br>
+                            <button btn="btn" type="submit">Filter</button>
+                          </div>     
                     </form>
                 </div>
         <div class="row">
