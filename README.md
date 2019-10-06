@@ -2,6 +2,12 @@
 
 This a personal gallery where interested parties can view images about me
 
+# Site Glance
+
+![Homepage](rmpics/Screenshot1.png)
+
+![Homepage modal details](rmpics/Screenshot2.png)
+
 ## Getting Started
 
 Fork this repository or clone it to your local machine on ubuntu use the following commands
