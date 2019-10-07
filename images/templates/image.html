@@ -27,7 +27,16 @@
                     </li>
                     <li>
                         <p class="headings">Copy Link</p>
-                        <p>https://nyota-gallery.herokuapp.com{{image.image.url}}</p>
+                        <form>
+                            <!-- <p>https://nyota-gallery.herokuapp.com{{image.image.url}}</p> -->
+                        
+                        <div class="input-group">
+                            <input type="text" class="form-control" value="https://nyota-gallery.herokuapp.com{{image.image.url}}" id="{{image.id}}.url">
+                            <div class="input-group-btn">
+                                <button style="padding-bottom:10px;" onclick="copyLink('{{image.id}}.url')">Copy</button>
+                            </div>
+                        </div>
+                        </form>
                     </li>
                 </ol>
             </div>

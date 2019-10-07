@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import Image,Location,Tag,Category
+import pyperclip
 
 def index(request):
     '''
@@ -35,6 +36,9 @@ def search_results(request):
         return render(request,'search.html',{"message":message})
 
 def single_image(request,image_id):
+    '''
+    Display single image
+    '''
     try:
         single_image = Image.objects.get(id = image_id)
     except DoesNotExist:
